@@ -1,0 +1,36 @@
+// transaction.proto
+syntax = "proto3";
+
+package transaction_manager;
+
+option go_package = "proto_gen/";
+
+service TransactionManager {
+  rpc Prepare(PrepareRequest) returns (PrepareResponse);
+  rpc Commit(CommitRequest) returns (CommitResponse);
+  rpc Abort(AbortRequest) returns (AbortResponse);
+}
+
+message PrepareRequest {
+  string transactionId = 1;
+}
+
+message PrepareResponse {
+  bool prepared = 1;
+}
+
+message CommitRequest {
+  string transactionId = 1;
+}
+
+message CommitResponse {
+  bool committed = 1;
+}
+
+message AbortRequest {
+  string transactionId = 1;
+}
+
+message AbortResponse {
+  bool aborted = 1;
+}
